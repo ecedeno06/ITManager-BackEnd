@@ -11,6 +11,10 @@ app.listen (PORT, () => {
     
 })
 
+app.get ('/', (req,res) => {
+  res.send ('Api Funcionando...');
+})
+
 
 /*import pkg from 'pg';
 const { Pool } = pkg;
