@@ -1,5 +1,5 @@
 // src/controllers/user.controller.js
-import { pool } from '../config/db.js'
+import { pool } from '../../config/db.js'
 
 export async function getUsuarios(req, res, next) {
   try {
