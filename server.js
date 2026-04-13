@@ -14,6 +14,15 @@ app.get ('/', (req,res) => {
   res.send ('Api Funcionando...');
 });
 
+app.get('/db-check', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ status: 'ok', time: result.rows[0] });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message, stack: error.stack });
+  }
+});
+
 
 /*import pkg from 'pg';
 const { Pool } = pkg;
