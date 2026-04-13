@@ -3,11 +3,9 @@ import app from './src/app.js'
 
 const PORT = process.env.PORT || 8080;
 
-//app.listen(3000, () => {
- console.log('Server running on http://localhost:3000')
-//});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Available at http://localhost:${PORT}`);
 });
 
 app.get ('/', (req,res) => {
