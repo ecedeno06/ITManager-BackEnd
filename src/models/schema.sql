@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS role_permissions (
 CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(100) PRIMARY KEY,
   first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100) NOT NULL, 
+  last_name VARCHAR(100) NOT NULL,
   department VARCHAR(100),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   active boolean,
@@ -60,6 +60,10 @@ CREATE TABLE IF NOT EXISTS users (
   topt INTEGER,
   topt_live DATE
 );
+
+ALTER TABLE IF EXISTS users ADD COLUMN IF NOT EXISTS registrado boolean DEFAULT FALSE;
+
+ALTER TABLE IF EXISTS user_companies ADD COLUMN IF NOT EXISTS registrado boolean DEFAULT FALSE;
 
 -- User Roles Junction Table (Many-to-Many + Company Specific)
 CREATE TABLE IF NOT EXISTS user_roles (
@@ -80,6 +84,7 @@ CREATE TABLE IF NOT EXISTS user_companies (
   company_id INTEGER REFERENCES companies(id) ON DELETE CASCADE,
   joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_primary BOOLEAN DEFAULT FALSE,
+  registrado boolean DEFAULT FALSE,
   PRIMARY KEY (user_email, company_id)
 );
 
@@ -125,7 +130,7 @@ CREATE TABLE IF NOT EXISTS service_payments (
 );
 
 -- Initial Data
-INSERT INTO roles (name, permissions) VALUES 
+INSERT INTO roles (name, permissions) VALUES
 ('Admin', '{"all": true}'),
 ('Operator', '{"read": true, "write": true}'),
 ('Viewer', '{"read": true}')
