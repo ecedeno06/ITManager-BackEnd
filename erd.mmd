@@ -2,19 +2,19 @@ erDiagram
     regions ||--o{ companies : "contiene"
     companies ||--o{ user_roles : "asignada a"
     companies ||--o{ user_companies : "tiene"
-    
+
     roles ||--o{ role_permissions : "tiene permisos"
     roles ||--o{ user_roles : "asignada a"
-    
+
     modules ||--o{ role_permissions : "tiene permisos"
-    
+
     users ||--o{ user_roles : "tiene roles"
     users ||--o{ user_companies : "pertenece a"
     users ||--o{ equipment : "tiene asignado"
     users ||--o{ services : "tiene asignado"
-    
+
     equipment ||--o{ services : "tiene instalado"
-    
+
     services ||--o{ service_payments : "tiene pagos registrados"
 
     regions {
@@ -70,6 +70,7 @@ erDiagram
         string user_email PK, FK
         int company_id PK, FK
         boolean is_primary
+        registrado
     }
 
     equipment {
