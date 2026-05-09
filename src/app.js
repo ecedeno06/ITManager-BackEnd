@@ -20,16 +20,18 @@ app.get('/', (req, res) => {
 app.use('/', healthRoutes);
 
 // Rutas API (usando prefijo /api recomendado como "Senior")
-app.use('/api/auth', authRoutes);
-app.use('/api/usuarios', userRoutes);
+app.use('/auth', authRoutes);
+app.use('/usuarios', userRoutes);
 
 // Ruta no encontrada (404)
+/*
 app.use((req, res) => {
     res.status(404).json({
         ok: false,
         mensaje: 'Ruta no encontrada'
     });
 });
+*/
 
 // Middleware global de errores (siempre va al final)
 app.use(errorHandler);
