@@ -17,8 +17,6 @@ export async function login(req, res) {
       [email]
     );
 
-
-
     const user = result.rows[0];
 
     if (!user) {
